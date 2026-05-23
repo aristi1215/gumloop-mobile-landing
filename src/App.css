@@ -1,6 +1,6 @@
 .landing {
   min-height: 100svh;
-  overflow: hidden;
+  overflow-x: hidden;
   position: relative;
 }
 
@@ -114,6 +114,7 @@
 
 .video-stage {
   width: min(100%, 980px);
+  max-width: calc(100vw - 48px);
   position: relative;
   perspective: 1500px;
   transform-style: preserve-3d;
@@ -331,6 +332,7 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 12px;
+  margin-top: 8px;
 }
 
 .stat-row span {
@@ -345,6 +347,7 @@
   display: inline-flex;
   align-items: center;
   gap: 12px;
+  margin-top: 8px;
   color: #ffffff;
   text-decoration: none;
   font-weight: 900;
@@ -370,6 +373,7 @@
   position: relative;
   z-index: 1;
   padding: 96px clamp(18px, 4vw, 72px) 110px;
+  overflow: hidden;
 }
 
 .section-heading {
@@ -389,8 +393,10 @@
 
 .ideas-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
   gap: 18px;
+  width: min(100%, 1180px);
+  margin: 0 auto;
 }
 
 .idea-card {
