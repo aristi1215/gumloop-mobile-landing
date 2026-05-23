@@ -374,6 +374,7 @@
   z-index: 1;
   padding: 96px clamp(18px, 4vw, 72px) 110px;
   overflow: hidden;
+  scroll-margin-top: 32px;
 }
 
 .section-heading {
