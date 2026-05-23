@@ -51,7 +51,7 @@ function App() {
           <p className="eyebrow">Built to earn a seat on the Gumloop team</p>
           <h1 id="page-title">Run every workflow from your pocket.</h1>
           <p>
-            A cinematic landing page for a mobile app concept that monitors
+            Mobile app concept that monitors and controls
             Gumloop automations, restarts failed runs, and sends operators the
             signal they need before a customer notices.
           </p>
