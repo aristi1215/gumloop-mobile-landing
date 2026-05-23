@@ -1,13 +1,10 @@
+import { useState } from 'react'
 import './App.css'
 
+const LOOM_EMBED_URL =
+  'https://www.loom.com/embed/8f79cf9578544358889a38e1290f2b27'
+
 const ideas = [
-  {
-    eyebrow: 'API clarity',
-    title: 'Make operational history truly public',
-    detail:
-      'Expose the same recent-run signal visible in Gumloop history through a documented endpoint: status, timestamps, credit cost, trigger source, workspace, project, saved item, and the run URL.',
-    proof: 'Prototype target: /history?page_size=8&item_type=all&scope=global',
-  },
   {
     eyebrow: 'Agent ecosystem',
     title: 'Ship a public API MCP gateway',
@@ -27,6 +24,18 @@ const ideas = [
 const stats = ['Mobile runs', 'Live history', 'Push alerts', 'Agent-ready API']
 
 function App() {
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false)
+  const [isVideoLoading, setIsVideoLoading] = useState(false)
+
+  const handlePlayVideo = () => {
+    setIsVideoPlaying(true)
+    setIsVideoLoading(true)
+  }
+
+  const handleVideoLoaded = () => {
+    setIsVideoLoading(false)
+  }
+
   return (
     <main className="landing">
       <div className="aurora aurora-one" />
@@ -84,12 +93,37 @@ function App() {
                 </div>
               </div>
             </div>
-            <div className="play-button" aria-hidden="true">
-              <span />
-            </div>
-            <p className="placeholder-label">
-              Video placeholder - replace with the mobile app recording
-            </p>
+            {!isVideoPlaying && (
+              <button
+                type="button"
+                className="play-button"
+                onClick={handlePlayVideo}
+                aria-label="Play demo video"
+              >
+                <span className="play-button-rings" aria-hidden="true" />
+                <span className="play-button-face" aria-hidden="true">
+                  <span className="play-button-triangle" />
+                </span>
+              </button>
+            )}
+            {isVideoPlaying && (
+              <div className="video-embed" aria-busy={isVideoLoading}>
+                {isVideoLoading && (
+                  <div className="video-embed-loader" role="status">
+                    <span className="video-embed-spinner" aria-hidden="true" />
+                    <p>Loading demo…</p>
+                  </div>
+                )}
+                <iframe
+                  className={isVideoLoading ? 'video-embed-frame--loading' : undefined}
+                  src={`${LOOM_EMBED_URL}?autoplay=1`}
+                  title="Gumloop mobile demo"
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  allowFullScreen
+                  onLoad={handleVideoLoaded}
+                />
+              </div>
+            )}
           </div>
         </div>
 
@@ -110,7 +144,7 @@ function App() {
       <section className="ideas-section" id="ideas" aria-labelledby="ideas-title">
         <div className="section-heading">
           <p className="eyebrow">What I would build next</p>
-          <h2 id="ideas-title">Three product bets that make Gumloop easier to adopt, monitor, and trust.</h2>
+          <h2 id="ideas-title">More Ideas that I can help building.</h2>
         </div>
 
         <div className="ideas-grid">
